@@ -8,12 +8,12 @@ from satella.coding.sequences import choose
 from satella.instrumentation.metrics import getMetric
 from werkzeug.serving import run_simple
 
-from flask_satella_metrics import SatellaMetricsMiddleware
+import flask_satella_metrics
 from flask_satella_metrics.prometheus_exporter import PrometheusExporter
 
 app = flask.Flask(__name__)
 app.register_blueprint(PrometheusExporter({'service_name': 'my_service'}))
-SatellaMetricsMiddleware(app)
+flask_satella_metrics.SatellaMetricsMiddleware(app)
 
 
 @app.route('/', methods=['GET'])
