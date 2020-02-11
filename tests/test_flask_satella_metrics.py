@@ -29,10 +29,8 @@ class TestFlaskSatellaMetrics(unittest.TestCase):
 
     def test_satella_metrics(self):
         q = requests.get('http://localhost:5000/')
-        logger.warning(f'{q.text}')
         self.assertEqual(q.status_code, 200)
 
         root_metric = getMetric().to_metric_data()
-        logger.warning(f'{root_metric.values}')
         request_codes = choose(lambda metric: metric.name == 'requests_response_codes' and metric.labels == {'response_code': 200}, root_metric.values)
         self.assertEqual(request_codes.value, 1)

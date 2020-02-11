@@ -14,5 +14,15 @@ flask-satella-metrics is an application to seamlessly measure your Flask applica
 Example use:
 
 ```python
+from flask_satella_metrics import SatellaMetricsMiddleware
+app = flask.Flask(__name__)
+SatellaMetricsMiddleware(app)
+```
 
+And to launch a Prometheus exporter use the following snippet:
+
+```python
+from satella.instrumentation.metrics.exporters import PrometheusHTTPExporterThread
+phet = PrometheusHTTPExporterThread('0.0.0.0', 8080, {'service_name': 'my_service'})
+phet.start()
 ```

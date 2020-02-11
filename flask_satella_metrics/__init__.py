@@ -7,9 +7,6 @@ import time
 
 __version__ = '0.1a1'
 
-flask_requests_summary = getMetric('flask_requests', 'summary', quantiles=[0.2, 0.5, 0.9, 0.95, 0.99])
-flask_requests_histogram = getMetric('flask_requests_histogram', 'histogram')
-
 
 @static_var('summary_metric', None)
 @static_var('histogram_metric', None)
