@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-from satella import __version__
+from flask_satella_metrics import __version__
 
 setup(keywords=['flask', 'satella', 'metrics', 'instrumentation', 'prometheus'],
       packages=find_packages(include=['flask_satella_metrics', 'flask_satella_metrics.*']),
