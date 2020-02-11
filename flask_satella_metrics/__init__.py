@@ -5,7 +5,7 @@ from collections import namedtuple
 import flask
 from satella.instrumentation.metrics import getMetric, Metric
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 __all__ = ['SatellaMetricsMiddleware']
 
