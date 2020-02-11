@@ -1,4 +1,3 @@
-import logging
 import os
 import threading
 import unittest
@@ -12,18 +11,14 @@ from werkzeug.serving import run_simple
 from flask_satella_metrics import SatellaMetricsMiddleware
 from flask_satella_metrics.prometheus_exporter import PrometheusExporter
 
-logger = logging.getLogger(__name__)
-
 app = flask.Flask(__name__)
+app.register_blueprint(PrometheusExporter({'service_name': 'my_service'}))
 SatellaMetricsMiddleware(app)
 
 
 @app.route('/', methods=['GET'])
 def endpoint():
     return ''
-
-
-app.register_blueprint(PrometheusExporter({'service_name': 'my_service'}))
 
 
 class TestFlaskSatellaMetrics(unittest.TestCase):
