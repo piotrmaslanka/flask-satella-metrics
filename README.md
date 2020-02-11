@@ -7,7 +7,6 @@ flask-satella-metrics
 [![PyPI](https://img.shields.io/pypi/pyversions/flask-flask-satella-metrics-metrics.svg)](https://pypi.python.org/pypi/flask-flask-satella-metrics-metrics)
 [![PyPI version](https://badge.fury.io/py/flask-flask-satella-metrics-metrics.svg)](https://badge.fury.io/py/flask-flask-satella-metrics-metrics)
 [![PyPI](https://img.shields.io/pypi/implementation/flask-flask-satella-metrics-metrics.svg)](https://pypi.python.org/pypi/flask-flask-satella-metrics-metrics)
-[![Documentation Status](https://readthedocs.org/projects/flask-flask-satella-metrics-metrics/badge/?version=latest)](http://flask-flask-satella-metrics-metrics.readthedocs.io/en/latest/?badge=latest)
 
 flask-satella-metrics is an application to seamlessly measure your Flask application using Satella's metrics.
 
