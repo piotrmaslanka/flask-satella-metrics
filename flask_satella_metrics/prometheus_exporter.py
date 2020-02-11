@@ -2,8 +2,8 @@ import logging
 import typing as tp
 
 from flask import Blueprint
-from satella.instrumentation.metrics.exporters import metric_data_collection_to_prometheus
 from satella.instrumentation.metrics import getMetric
+from satella.instrumentation.metrics.exporters import metric_data_collection_to_prometheus
 
 logger = logging.getLogger(__name__)
 
