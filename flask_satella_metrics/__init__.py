@@ -32,14 +32,14 @@ def SatellaMetricsMiddleware(app: flask.Flask, summary_metric: tp.Optional[Metri
         histogram_metric or getMetric('requests_histogram', 'histogram'),
         response_codes_metric or getMetric('requests_response_codes', 'counter'))
     app.before_request(before_request)
-    app.teardown_request(teardown_request)
+    app.after_request(after_request)
 
 
 def before_request():
     flask.request.time_measure = measure()
 
 
-def teardown_request(response):
+def after_request(response):
     time_measure = flask.request.time_measure
     time_measure.stop()
     elapsed = time_measure()
