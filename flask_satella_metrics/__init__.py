@@ -1,4 +1,3 @@
-import time
 import typing as tp
 from collections import namedtuple
 
