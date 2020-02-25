@@ -1,3 +1,7 @@
+# v1.4
+
+* internal metrics won't be exported anymore
+
 # v1.3
 
 * refactored to use `satella.time.measure` to measure elapsed time

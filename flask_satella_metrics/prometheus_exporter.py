@@ -17,6 +17,9 @@ def PrometheusExporter(extra_labels: tp.Optional[dict] = None) -> Blueprint:
     def export_prometheus():
         metric = getMetric()
         metric_data = metric.to_metric_data()
+        for datum in metric_data.values:
+            if datum.internal:
+                metric_data.values.remove(datum)
         metric_data.add_labels(labels)
         return metric_data_collection_to_prometheus(metric_data)
 
