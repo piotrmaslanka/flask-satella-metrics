@@ -1,6 +1,6 @@
 # v1.3
 
-* bugfix release
+* refactored to use `satella.time.measure` to measure elapsed time
 
 # v1.2
 

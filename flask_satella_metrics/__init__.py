@@ -3,6 +3,7 @@ import typing as tp
 from collections import namedtuple
 
 import flask
+from satella.time import measure
 from satella.instrumentation.metrics import getMetric, Metric
 
 __version__ = '1.3'
@@ -35,11 +36,12 @@ def SatellaMetricsMiddleware(app: flask.Flask, summary_metric: tp.Optional[Metri
 
 
 def before_request():
-    flask.request.start_time = time.monotonic()
+    flask.request.time_measure = measure()
 
 
 def teardown_request(response):
-    elapsed = time.monotonic() - flask.request.start_time
+    flask.request.time_measure.stop()
+    elapsed = flask.request.time_measure()
     endpoint = str(flask.request.endpoint)
     flask.current_app.metrics.summary_metric.runtime(elapsed, endpoint=endpoint)
     flask.current_app.metrics.histogram_metric.runtime(elapsed, endpoint=endpoint)
