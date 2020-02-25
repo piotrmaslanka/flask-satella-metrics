@@ -5,7 +5,7 @@ from collections import namedtuple
 import flask
 from satella.instrumentation.metrics import getMetric, Metric
 
-__version__ = '1.2'
+__version__ = '1.3'
 
 __all__ = ['SatellaMetricsMiddleware']
 
@@ -34,11 +34,11 @@ def SatellaMetricsMiddleware(app: flask.Flask, summary_metric: tp.Optional[Metri
     app.teardown_request(after_request)
 
 
-def teardown_request():
+def before_request():
     flask.request.start_time = time.monotonic()
 
 
-def after_request(response):
+def teardown_request(response):
     elapsed = time.monotonic() - flask.request.start_time
     endpoint = str(flask.request.endpoint)
     flask.current_app.metrics.summary_metric.runtime(elapsed, endpoint=endpoint)

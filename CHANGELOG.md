@@ -1,3 +1,7 @@
+# v1.3
+
+* bugfix release
+
 # v1.2
 
 * bugfix: earlier `flask-satella-metrics` would not register
