@@ -31,7 +31,7 @@ def SatellaMetricsMiddleware(app: flask.Flask, summary_metric: tp.Optional[Metri
         histogram_metric or getMetric('requests_histogram', 'histogram'),
         response_codes_metric or getMetric('requests_response_codes', 'counter'))
     app.before_request(before_request)
-    app.teardown_request(after_request)
+    app.teardown_request(teardown_request)
 
 
 def before_request():
