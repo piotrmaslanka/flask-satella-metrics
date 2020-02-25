@@ -40,8 +40,9 @@ def before_request():
 
 
 def teardown_request(response):
-    flask.request.time_measure.stop()
-    elapsed = flask.request.time_measure()
+    time_measure = flask.request.time_measure
+    time_measure.stop()
+    elapsed = time_measure()
     endpoint = str(flask.request.endpoint)
     flask.current_app.metrics.summary_metric.runtime(elapsed, endpoint=endpoint)
     flask.current_app.metrics.histogram_metric.runtime(elapsed, endpoint=endpoint)
