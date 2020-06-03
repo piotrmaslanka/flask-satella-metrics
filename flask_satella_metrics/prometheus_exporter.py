@@ -8,12 +8,13 @@ from satella.instrumentation.metrics.exporters import metric_data_collection_to_
 logger = logging.getLogger(__name__)
 
 
-def PrometheusExporter(extra_labels: tp.Optional[dict] = None) -> Blueprint:
+def PrometheusExporter(extra_labels: tp.Optional[dict] = None,
+                       url: str = '/metrics') -> Blueprint:
     labels = extra_labels or {}
 
     blueprint = Blueprint('prometheus_exporter', __name__)
 
-    @blueprint.route('/metrics', methods=['GET'])
+    @blueprint.route(url, methods=['GET'])
     def export_prometheus():
         metric = getMetric()
         metric_data = metric.to_metric_data()
