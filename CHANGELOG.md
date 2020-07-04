@@ -1,3 +1,7 @@
+# v1.5.1
+
+* fixed not exporting internal metrics
+
 # v1.5
 
 * added optional `url` for `PrometheusExporter`

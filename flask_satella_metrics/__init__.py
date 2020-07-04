@@ -5,7 +5,7 @@ import flask
 from satella.time import measure
 from satella.instrumentation.metrics import getMetric, Metric
 
-__version__ = '1.5'
+__version__ = '1.5.1'
 
 __all__ = ['SatellaMetricsMiddleware', '__version__']
 

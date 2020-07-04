@@ -29,6 +29,7 @@ class TestFlaskSatellaMetrics(unittest.TestCase):
         thread.start()
 
     def test_satella_metrics(self):
+        getMetric('my.internal.metric', 'counter', internal=True)
         q = requests.get('http://localhost:5000/')
         self.assertEqual(q.status_code, 200)
 
@@ -42,3 +43,4 @@ class TestFlaskSatellaMetrics(unittest.TestCase):
         self.assertEqual(q.status_code, 200)
         self.assertIn('service_name="my_service"', q.text)
         self.assertIn('requests_response_codes', q.text)
+        self.assertNotIn('my_internal_metric', q.text)

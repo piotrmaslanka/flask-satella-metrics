@@ -18,9 +18,11 @@ def PrometheusExporter(extra_labels: tp.Optional[dict] = None,
     def export_prometheus():
         metric = getMetric()
         metric_data = metric.to_metric_data()
+        new_values = set()
         for datum in metric_data.values:
-            if datum.internal:
-                metric_data.values.remove(datum)
+            if not datum.internal:
+                new_values.add(datum)
+        metric_data.values = new_values
         metric_data.add_labels(labels)
         return metric_data_collection_to_prometheus(metric_data)
 
