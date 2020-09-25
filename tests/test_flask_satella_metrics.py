@@ -21,6 +21,11 @@ def endpoint():
     return ''
 
 
+@app.route('/value_error', methods=['GET'])
+def value_error():
+    raise ValueError()
+
+
 class TestFlaskSatellaMetrics(unittest.TestCase):
     def setUp(self) -> None:
         os.environ['FLASK_DEBUG'] = '1'
@@ -33,10 +38,17 @@ class TestFlaskSatellaMetrics(unittest.TestCase):
         q = requests.get('http://localhost:5000/')
         self.assertEqual(q.status_code, 200)
 
+        q = requests.get('http://localhost:5000/value_error')
+        self.assertEqual(q.status_code, 500)
+
         root_metric = getMetric().to_metric_data()
         request_codes = choose(
             lambda metric: metric.name == 'requests_response_codes' and metric.labels == {
                 'response_code': 200}, root_metric.values)
+        self.assertEqual(request_codes.value, 1)
+        request_codes = choose(
+            lambda metric: metric.name == 'requests_response_codes' and metric.labels == {
+                'response_code': 500}, root_metric.values)
         self.assertEqual(request_codes.value, 1)
 
         q = requests.get('http://localhost:5000/metrics')
