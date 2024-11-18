@@ -6,7 +6,7 @@ setup(keywords=['flask', 'satella', 'metrics', 'instrumentation', 'prometheus'],
       packages=find_packages(include=['flask_satella_metrics', 'flask_satella_metrics.*']),
       version=__version__,
       install_requires=[
-            'satella', 'flask'
+            'satella>=2.26.3', 'flask'
       ],
       tests_require=[
           "nose2", "mock", "coverage", "nose2[coverage_plugin]", "requests"
