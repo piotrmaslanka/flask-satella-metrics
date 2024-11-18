@@ -1,3 +1,7 @@
+# v1.6.0
+
+* streaming responses times will now be calculated correctly
+
 # v1.5.1
 
 * fixed not exporting internal metrics
